@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProjetoEduX.Domains;
 using ProjetoEduX.Interfaces;
 using ProjetoEduX.Repositories;
+using ProjetoEduX.Utils;
 
 namespace ProjetoEduX.Controllers
 {
@@ -122,6 +123,8 @@ namespace ProjetoEduX.Controllers
         {
             try
             {
+                usuario.Senha = Crypto.Criptografar(usuario.Senha, usuario.Email.Substring(0, 3));
+
                 _usuarioRepository.Adicionar(usuario);
 
 

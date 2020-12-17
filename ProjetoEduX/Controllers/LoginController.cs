@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using ProjetoEduX.Contexts;
 using ProjetoEduX.Domains;
+using ProjetoEduX.Utils;
 
 namespace ProjetoEduX.Controllers
 {
@@ -76,6 +77,8 @@ namespace ProjetoEduX.Controllers
         [HttpPost]
         public IActionResult Login([FromBody]Usuario login)
         {
+            login.Senha = Crypto.Criptografar(login.Senha, login.Email.Substring(0, 3));
+
             IActionResult response = Unauthorized();
             var user = AuthenticateUser(login);
 
