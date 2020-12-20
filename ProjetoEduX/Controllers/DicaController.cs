@@ -1,66 +1,64 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProjetoEdux.Repositories;
+using ProjetoEduX.Contexts;
 using ProjetoEduX.Domains;
-using ProjetoEduX.Interfaces;
-using ProjetoEduX.Repositories;
 using ProjetoEduX.Utils;
 
 namespace ProjetoEduX.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class dicaController : ControllerBase
+    public class DicaController : ControllerBase
     {
-        private readonly IDicaRepository _dicaRepository;
-        public dicaController()
+        private readonly DicaRepository _dicaRepository;
+
+        public DicaController()
         {
             _dicaRepository = new DicaRepository();
         }
 
-        // GET: api/dica
         /// <summary>
-        /// Mostra todas as instuições cadastradas
+        /// Lista todos itens do Objeto Dicas
         /// </summary>
-        /// <returns>Lista com todas as instituições</returns>
+        /// <returns>Dica Categoria</returns>
         [HttpGet]
-
-
         public IActionResult Get()
         {
             try
             {
+                var dicas = _dicaRepository.Listar();
 
-                var Dica = _dicaRepository.Listar();
-
-                if (Dica.Count == 0)
+                if (dicas.Count == 0)
                     return NoContent();
 
                 return Ok(new
                 {
-                    totalCount = Dica.Count,
-                    data = Dica
-
+                    totalCount = dicas.Count,
+                    data = dicas
                 });
-
-
             }
             catch (Exception ex)
             {
-
-                return BadRequest(ex.Message);
+                return BadRequest(new
+                {
+                    statusCode = 400,
+                    error = "Envie um email para email@email.com informando que ocorreu um erro no endpoint Get/Usuarios"
+                });
             }
         }
 
-        // GET: api/dica/5
         /// <summary>
-        /// Mostra uma única instituição
+        /// Busca Objeto Dica por id
         /// </summary>
-        /// <param name="id">Id da instituição</param>
-        /// <returns>Uma instituição</returns>
+        /// <param name="id"></param>
+        /// <returns>Dica Buscada</returns>
         [HttpGet("{id}")]
-
         public IActionResult Get(Guid id)
         {
             try
@@ -71,35 +69,32 @@ namespace ProjetoEduX.Controllers
                     return NotFound();
 
                 return Ok(dica);
-
             }
             catch (Exception ex)
             {
-
                 return BadRequest(ex.Message);
             }
         }
 
-        // PUT: api/dica/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-
         /// <summary>
-        /// Altera determinada instituição
+        /// Edita Objeto dica
         /// </summary>
-        /// <param name="id">Id da instituição</param>
-        /// <param name="dica">Objeto de instituição com alterações</param>
-        /// <returns> instituição alterada</returns>
+        /// <param name="id"></param>
+        /// <param name="dica"></param>
+        /// <returns>Itens dica a serem editados</returns>
         [HttpPut("{id}")]
-
         public IActionResult Put(Guid id, Dica dica)
         {
             try
             {
-                //Edita a dica
+                var dicaTemp = _dicaRepository.BuscarPorId(id);
+
+                if (dicaTemp == null)
+                    return NotFound();
+
+                dica.IdDica = id;
                 _dicaRepository.Editar(dica);
 
-                //Retorna Ok com os dados da dica
                 return Ok(dica);
             }
             catch (Exception ex)
@@ -108,28 +103,22 @@ namespace ProjetoEduX.Controllers
             }
         }
 
-        // POST: api/dica
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-
         /// <summary>
-        /// Cadastra uma insituição
+        /// Adiciona Objeto Dica
         /// </summary>
-        /// <param name="dica">Objeto completo de instituição</param>
-        /// <returns>instituição cadastrada</returns>
+        /// <param name="dica"></param>
+        /// <returns>Objeto dica a ser adicionado</returns>
         [HttpPost]
-
-        public IActionResult Post(Dica dica)
+        public IActionResult Post([FromForm] Dica dica)
         {
             try
             {
                 if (dica.Imagem != null)
                 {
-                 
+                    var urlImagem = Upload.Local(dica.Imagem);
+                    dica.UrlImagem = urlImagem;
                 }
-
                 _dicaRepository.Adicionar(dica);
-
 
                 return Ok(dica);
             }
@@ -138,27 +127,16 @@ namespace ProjetoEduX.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-        // DELETE: api/dica/5
         /// <summary>
-        /// Exclui uma instituição
+        /// Exclui Objeto Dica
         /// </summary>
-        /// <param name="id">Id da instituição</param>
-        /// <returns>Id excluido</returns>
+        /// <param name="id"></param>
+        /// <returns>Objeto dica a ser Excluido</returns>
         [HttpDelete("{id}")]
-
         public IActionResult Delete(Guid id)
         {
             try
             {
-
-                var Dica = _dicaRepository.BuscarPorId(id);
-
-
-                if (Dica == null)
-                    return NotFound();
-
-
                 _dicaRepository.Excluir(id);
 
                 return Ok(id);

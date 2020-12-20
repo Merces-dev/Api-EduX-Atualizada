@@ -4,6 +4,6 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup>
-    <ActiveDebugProfile>ProjetoEduX</ActiveDebugProfile>
+    <ActiveDebugProfile>Edux</ActiveDebugProfile>
   </PropertyGroup>
 </Project>

@@ -94,6 +94,7 @@ namespace ProjetoEduX.Controllers
         {
             try
             {
+                Curso.IdCurso = id;
                 //Edita a Curso
                 _cursoRepository.Editar(Curso);
 

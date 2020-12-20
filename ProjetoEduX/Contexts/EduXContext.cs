@@ -40,7 +40,7 @@ namespace ProjetoEduX.Contexts
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Data Source=.\SqlExpress2;Initial Catalog=EduX;User ID=sa;Password=sa132");
+                optionsBuilder.UseSqlServer(@"Data Source=.\SQLEXPRESS;Initial Catalog=edux;Integrated Security=True");
             }
         }
 
@@ -125,6 +125,10 @@ namespace ProjetoEduX.Contexts
                 entity.Property(e => e.Titulo)
                    .HasMaxLength(255)
                    .IsUnicode(false);
+
+                entity.Property(e => e.UrlImagem)
+                    .HasMaxLength(255)
+                    .IsUnicode(false);
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Dica)

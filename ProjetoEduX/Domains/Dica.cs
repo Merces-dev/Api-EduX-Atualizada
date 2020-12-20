@@ -20,19 +20,12 @@ namespace ProjetoEduX.Domains
         public string Titulo { get; set; }
 
 
-        //public string Imagem { get; set; }
-
 
         [NotMapped]
-        [JsonIgnore]
-        
+      
         public IFormFile Imagem { get; set; }
-        [NotMapped]
-        [JsonIgnore]
+
         public string UrlImagem { get; set; }
-
-
-
    
         public virtual Usuario IdUsuarioNavigation { get; set; }
        

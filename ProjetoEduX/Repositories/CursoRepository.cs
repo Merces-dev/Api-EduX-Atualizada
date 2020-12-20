@@ -92,7 +92,14 @@ namespace ProjetoEduX.Repositories
         {
             try
             {
-                return _ctx.Curso.ToList();
+                List<Curso> cursos = _ctx.Curso.Include("IdInstituicaoNavigation").ToList();
+
+                foreach (Curso _curso in cursos)
+                {
+                    _curso.IdInstituicaoNavigation.Curso = null;
+                }
+
+                return cursos;
             }
             catch (Exception ex)
             {
@@ -100,6 +107,7 @@ namespace ProjetoEduX.Repositories
                 throw new Exception(ex.Message);
             }
         }
+
 
         /// <summary>
         /// remove uma curso pelo seu id

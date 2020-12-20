@@ -7,7 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using ProjetoEduX.Utils;
 
 namespace ProjetoEduX.Controllers
-{
+
+   {
     [Route("api/[controller]")]
     [ApiController]
     public class UploadController : ControllerBase
@@ -40,5 +41,4 @@ namespace ProjetoEduX.Controllers
     }
 }
 
-    
 

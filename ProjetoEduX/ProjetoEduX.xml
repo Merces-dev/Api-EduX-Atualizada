@@ -136,40 +136,40 @@
             <param name="id">Id da curtida</param>
             <returns>Id excluido</returns>
         </member>
-        <member name="M:ProjetoEduX.Controllers.dicaController.Get">
+        <member name="M:ProjetoEduX.Controllers.DicaController.Get">
             <summary>
-            Mostra todas as instuições cadastradas
+            Lista todos itens do Objeto Dicas
             </summary>
-            <returns>Lista com todas as instituições</returns>
+            <returns>Dica Categoria</returns>
         </member>
-        <member name="M:ProjetoEduX.Controllers.dicaController.Get(System.Guid)">
+        <member name="M:ProjetoEduX.Controllers.DicaController.Get(System.Guid)">
             <summary>
-            Mostra uma única instituição
+            Busca Objeto Dica por id
             </summary>
-            <param name="id">Id da instituição</param>
-            <returns>Uma instituição</returns>
+            <param name="id"></param>
+            <returns>Dica Buscada</returns>
         </member>
-        <member name="M:ProjetoEduX.Controllers.dicaController.Put(System.Guid,ProjetoEduX.Domains.Dica)">
+        <member name="M:ProjetoEduX.Controllers.DicaController.Put(System.Guid,ProjetoEduX.Domains.Dica)">
             <summary>
-            Altera determinada instituição
+            Edita Objeto dica
             </summary>
-            <param name="id">Id da instituição</param>
-            <param name="dica">Objeto de instituição com alterações</param>
-            <returns> instituição alterada</returns>
+            <param name="id"></param>
+            <param name="dica"></param>
+            <returns>Itens dica a serem editados</returns>
         </member>
-        <member name="M:ProjetoEduX.Controllers.dicaController.Post(ProjetoEduX.Domains.Dica)">
+        <member name="M:ProjetoEduX.Controllers.DicaController.Post(ProjetoEduX.Domains.Dica)">
             <summary>
-            Cadastra uma insituição
+            Adiciona Objeto Dica
             </summary>
-            <param name="dica">Objeto completo de instituição</param>
-            <returns>instituição cadastrada</returns>
+            <param name="dica"></param>
+            <returns>Objeto dica a ser adicionado</returns>
         </member>
-        <member name="M:ProjetoEduX.Controllers.dicaController.Delete(System.Guid)">
+        <member name="M:ProjetoEduX.Controllers.DicaController.Delete(System.Guid)">
             <summary>
-            Exclui uma instituição
+            Exclui Objeto Dica
             </summary>
-            <param name="id">Id da instituição</param>
-            <returns>Id excluido</returns>
+            <param name="id"></param>
+            <returns>Objeto dica a ser Excluido</returns>
         </member>
         <member name="M:ProjetoEduX.Controllers.InstituicaoController.Get">
             <summary>

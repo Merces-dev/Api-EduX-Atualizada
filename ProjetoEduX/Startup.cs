@@ -113,6 +113,8 @@ namespace ProjetoEduX
 
             app.UseAuthorization();
 
+            app.UseStaticFiles();
+
             // Uso efetivamente do swagger
             app.UseSwagger();
 
