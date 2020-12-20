@@ -83,19 +83,16 @@ namespace ProjetoEduX.Controllers
         /// <param name="dica"></param>
         /// <returns>Itens dica a serem editados</returns>
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, Dica dica)
+        public IActionResult Put(Guid id, Dica Dica)
         {
             try
             {
-                var dicaTemp = _dicaRepository.BuscarPorId(id);
+                Dica.IdDica = id;
+                //Edita a Curso
+                _dicaRepository.Editar(Dica);
 
-                if (dicaTemp == null)
-                    return NotFound();
-
-                dica.IdDica = id;
-                _dicaRepository.Editar(dica);
-
-                return Ok(dica);
+                //Retorna Ok com os dados da Curso
+                return Ok(Dica);
             }
             catch (Exception ex)
             {
@@ -109,18 +106,18 @@ namespace ProjetoEduX.Controllers
         /// <param name="dica"></param>
         /// <returns>Objeto dica a ser adicionado</returns>
         [HttpPost]
-        public IActionResult Post([FromForm] Dica dica)
+        public IActionResult Post([FromForm] Dica Dica)
         {
             try
             {
-                if (dica.Imagem != null)
+                if (Dica.Imagem != null)
                 {
-                    var urlImagem = Upload.Local(dica.Imagem);
-                    dica.UrlImagem = urlImagem;
+                    var urlImagem = Upload.Local(Dica.Imagem);
+                    Dica.UrlImagem = urlImagem;
                 }
-                _dicaRepository.Adicionar(dica);
+                _dicaRepository.Adicionar(Dica);
 
-                return Ok(dica);
+                return Ok(Dica);
             }
             catch (Exception ex)
             {
@@ -137,6 +134,14 @@ namespace ProjetoEduX.Controllers
         {
             try
             {
+
+                var Dica = _dicaRepository.BuscarPorId(id);
+
+
+                if (Dica == null)
+                    return NotFound();
+
+
                 _dicaRepository.Excluir(id);
 
                 return Ok(id);

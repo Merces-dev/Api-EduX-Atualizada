@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using ProjetoEduX.Contexts;
 using ProjetoEduX.Domains;
 using ProjetoEduX.Interfaces;
@@ -85,15 +86,23 @@ namespace ProjetoEdux.Repositories
 
         public List<Dica> Listar()
         {
-            try
+           
+           try
             {
-                List<Dica> Dica = _ctx.Dica.ToList();
-                return Dica;
+                List<Dica> dicas = _ctx.Dica.Include("IdUsuarioNavigation").ToList();
+
+                foreach (Dica _dica in dicas)
+                {
+                    _dica.IdUsuarioNavigation.Dica = null;
+                }
+
+                return dicas;
             }
             catch (Exception ex)
             {
+
                 throw new Exception(ex.Message);
             }
-        }
+            }
     }
 }
