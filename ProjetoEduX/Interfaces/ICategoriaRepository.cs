@@ -8,14 +8,31 @@ namespace ProjetoEduX.Interfaces
 {
     interface ICategoriaRepository
     {
-        Task<List<Categoria>> Listar();
-
-        Task<Categoria> BuscarPorID(Guid id);
-
-        Task<Categoria> Adicionar(Categoria categoria);
-
-        Task<Categoria> Editar(Categoria categoria);
-
-        Task<Categoria> Remover(Categoria categoria);
+        /// <summary>
+        /// Lista todos os categorias
+        /// </summary>
+        /// <returns>Todos os categorias</returns>
+        List<Categoria> Listar();
+        /// <summary>
+        /// Busca um categoria através do Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>O categoria solicitado pelo Id</returns>
+        Categoria BuscarPorId(Guid id);
+        /// <summary>
+        /// Adiciona um categoria
+        /// </summary>
+        /// <param name="categoria"></param>
+        void Adicionar(Categoria categoria);
+        /// <summary>
+        /// Edita um dado de categoria
+        /// </summary>
+        /// <param name="categoria"></param>
+        void Editar(Categoria categoria);
+        /// <summary>
+        /// Remove um categoria
+        /// </summary>
+        /// <param name="id"></param>
+        void Remover(Guid id);
     }
 }

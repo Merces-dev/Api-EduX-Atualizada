@@ -526,6 +526,37 @@
             <param name="id">Id da instituição</param>
             <returns>Id excluido</returns>
         </member>
+        <member name="M:ProjetoEduX.Interfaces.ICategoriaRepository.Listar">
+            <summary>
+            Lista todos os categorias
+            </summary>
+            <returns>Todos os categorias</returns>
+        </member>
+        <member name="M:ProjetoEduX.Interfaces.ICategoriaRepository.BuscarPorId(System.Guid)">
+            <summary>
+            Busca um categoria através do Id
+            </summary>
+            <param name="id"></param>
+            <returns>O categoria solicitado pelo Id</returns>
+        </member>
+        <member name="M:ProjetoEduX.Interfaces.ICategoriaRepository.Adicionar(ProjetoEduX.Domains.Categoria)">
+            <summary>
+            Adiciona um categoria
+            </summary>
+            <param name="categoria"></param>
+        </member>
+        <member name="M:ProjetoEduX.Interfaces.ICategoriaRepository.Editar(ProjetoEduX.Domains.Categoria)">
+            <summary>
+            Edita um dado de categoria
+            </summary>
+            <param name="categoria"></param>
+        </member>
+        <member name="M:ProjetoEduX.Interfaces.ICategoriaRepository.Remover(System.Guid)">
+            <summary>
+            Remove um categoria
+            </summary>
+            <param name="id"></param>
+        </member>
         <member name="M:ProjetoEduX.Interfaces.IObjetivoAlunoRepository.Listar">
             <summary>
             Lista todos os objetivos de aluno
@@ -619,6 +650,37 @@
             </summary>	
             <param name="id"></param>	
         </member>
+        <member name="M:ProjetoEduX.Repositories.CategoriaRepository.Adicionar(ProjetoEduX.Domains.Categoria)">
+            <summary>
+            Cria uma categoria
+            </summary>
+            <param name="categoria">categoria a ser criada</param>
+        </member>
+        <member name="M:ProjetoEduX.Repositories.CategoriaRepository.BuscarPorId(System.Guid)">
+            <summary>
+            Busca uma categoria pelo Id
+            </summary>
+            <param name="id">Id da categoria</param>
+            <returns>categoria</returns>
+        </member>
+        <member name="M:ProjetoEduX.Repositories.CategoriaRepository.Editar(ProjetoEduX.Domains.Categoria)">
+            <summary>
+            edita uma categoria ja existente
+            </summary>
+            <param name="categoria">categoria a ser editada</param>
+        </member>
+        <member name="M:ProjetoEduX.Repositories.CategoriaRepository.Listar">
+            <summary>
+            Lista as categorias ja criadas
+            </summary>
+            <returns>lista de categorias</returns>
+        </member>
+        <member name="M:ProjetoEduX.Repositories.CategoriaRepository.Remover(System.Guid)">
+            <summary>
+            remove uma categoria pelo seu id
+            </summary>
+            <param name="id">id da categoria</param>
+        </member>
         <member name="M:ProjetoEduX.Repositories.CursoRepository.Adicionar(ProjetoEduX.Domains.Curso)">
             <summary>
             Cria uma curso
@@ -711,6 +773,37 @@
             remove uma newsletter pelo seu id
             </summary>
             <param name="id">id da newsletter</param>
+        </member>
+        <member name="M:ProjetoEduX.Repositories.ObjetivoRepository.Adicionar(ProjetoEduX.Domains.Objetivo)">
+            <summary>
+            Cria uma objetivo
+            </summary>
+            <param name="objetivo">objetivo a ser criado</param>
+        </member>
+        <member name="M:ProjetoEduX.Repositories.ObjetivoRepository.BuscarPorId(System.Guid)">
+            <summary>
+            Busca uma objetivo pelo Id
+            </summary>
+            <param name="id">Id da objetivo</param>
+            <returns>objetivo</returns>
+        </member>
+        <member name="M:ProjetoEduX.Repositories.ObjetivoRepository.Editar(ProjetoEduX.Domains.Objetivo)">
+            <summary>
+            edita uma objetivo ja existente
+            </summary>
+            <param name="objetivo">objetivo a ser editada</param>
+        </member>
+        <member name="M:ProjetoEduX.Repositories.ObjetivoRepository.Listar">
+            <summary>
+            Lista as objetivos ja criadas
+            </summary>
+            <returns>lista de objetivos</returns>
+        </member>
+        <member name="M:ProjetoEduX.Repositories.ObjetivoRepository.Remover(System.Guid)">
+            <summary>
+            remove uma objetivo pelo seu id
+            </summary>
+            <param name="id">id da objetivo</param>
         </member>
         <member name="M:ProjetoEduX.Repositories.UsuarioRepository.Adicionar(ProjetoEduX.Domains.Usuario)">
             <summary>
